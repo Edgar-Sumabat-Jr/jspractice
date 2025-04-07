@@ -13,21 +13,21 @@
 
         <div class="div-1">
             <h2>Im a header 1</h2>
-            <p id="words" >change my color</p>
+            <p class="words" >change my color</p>
             <button class = "button-blue" onclick="turnRed()">red button</button>
             <button class = "button-red" onclick="turnBlue()">blue button</button>
         </div>
 
         <div class="div-2">
             <h2>Im a header 2 </h2>
-            <p id="words" >change my color</p>
+            <p class="words" >change my color</p>
             <button class = "button-blue" onclick="turnRed()">red button</button>
             <button class = "button-red" onclick="turnBlue()">blue button</button>
         </div>
 
         <div class="div-3">
             <h2>Im a header 3</h2>
-            <p id="words" >change my color</p>
+            <p class="words" >change my color</p>
             <button class = "button-blue" onclick="turnRed()">red button</button>
             <button class = "button-red" onclick="turnBlue()">blue button</button>
         </div>
@@ -145,10 +145,9 @@
                 </p>
             </div>
         </article>
-        
+
+
     </div>
-
-
 
 
 
@@ -193,21 +192,72 @@
 
 
 
+<div class="flex-container">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+
+</div>
+
+
+<div class="form-container">
+    <form action="#" method="get">
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname"><br><br>
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname"><br>
+
+
+        <input type="submit" value="Submit"><br><br>
+
+
+        <input type="radio" id="html" name="fav_language" value="HTML">
+        <label for="html">HTML</label><br>
+
+        <input type="radio" id="css" name="fav_language" value="CSS">
+        <label for="css">CSS</label><br>
+
+        <label for="cars">select cars</label>
+        <select id="cars" name="cars">
+            <option value="car-1">Volvo</option>
+            <option value="car-2">Ford</option>
+            <option value="car-3">Toyota</option>
+            <option value="car-4" selected>None</option>
+
+        </select>
+
+        <br>
+        <br>
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="enter username" required><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="enter password" required><br>
+
+    <input type="submit">
+    <input type="reset" name="reset" id="reset">
+
+
+    </form>
+</div>
+
+
 
 
     <script>
         function turnRed()
         {
-            document.getElementById("words").innerHTML = "im red";
-            document.getElementById("words").style.color = "red";
+            document.getElementsByClassName("words").innerHTML = "im red";
+            document.getElementsByClassName("words").style.color = "red";
         }
     </script>
 
     <script>
         function turnBlue()
         {
-            document.getElementById("words").innerHTML = "im blue";
-            document.getElementById("words").style.color = "blue";
+            document.getElementsByClassName("words").innerHTML = "im blue";
+            document.getElementsByClassName("words").style.color = "blue";
         }
     </script>
 

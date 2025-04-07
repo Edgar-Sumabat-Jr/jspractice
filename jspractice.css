@@ -1,0 +1,34 @@
+body {
+    color: white;
+    background-color: black;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+}
+
+.grid-container h1, h2, form {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    padding: 10px;
+
+}
+
+.grid-container h2:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
+.close-button {
+    margin-left: auto;
+    
+}
+
+.close-button:hover {
+    background-color: red;
+}
+

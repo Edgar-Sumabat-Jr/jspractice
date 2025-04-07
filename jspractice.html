@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="jspractice.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="grid-container">
+        <h1>To Do List</h1>
+
+        <form name="todo-form" onsubmit="addList(); return false; ">
+            <label for="list-form"></label>
+            <input type="text" id="list-form" name="text-form" size="50px" placeholder="What do you want to do today?">
+            <input type="submit">
+        </form>
+
+        <div class="list-container" id="list-div">
+            <h2 onclick="onClose(this)">List 1 <span onclick="removeList(this)" class="close-button">x</span></h2>
+            <h2 onclick="onClose(this)">List 2 <span onclick="removeList(this)" class="close-button">x</span></h2>
+            <h2 onclick="onClose(this)">List 3 <span onclick="removeList(this)" class="close-button">x</span></h2>
+        </div>
+
+    </div>    
+
+    <script>
+        function onClose(element) {
+            if (element.style.textDecoration == "line-through") {
+                element.style.textDecoration = "none";
+            }
+            else {
+                element.style.textDecoration = "line-through";
+            }
+        }
+    </script>
+
+
+    <script>
+        function addList() {
+            
+            // check if the textbox is empty after clicking submit
+            const userInput = document.forms["todo-form"]["text-form"].value;
+            if (userInput == "") {
+                alert("Empty input detected");
+                return false;
+            }
+
+            const newElement = document.createElement("h2");
+            const spanElement = document.createElement("SPAN");
+            
+            // creates new element h2
+            newElement.innerHTML = document.getElementById("list-form").value;
+            newElement.setAttribute("onclick", "onClose(this)");
+
+            // creates new span element and append it to h2
+            spanElement.innerHTML = "x";
+            spanElement.setAttribute("onclick", "removeList(this)");
+            spanElement.className = "close-button";
+
+            // appends the span element to h2
+            newElement.append(spanElement);
+            
+            // appends the h2 to the parent div container
+            document.getElementById("list-div").append(newElement);
+        }
+    </script>
+
+
+<script>
+    function removeList (el) {
+        let element = el.parentElement;
+        element.remove();
+
+    }
+
+</script>
+
+
+</body>
+</html>

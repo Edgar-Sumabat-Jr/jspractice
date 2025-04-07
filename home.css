@@ -304,3 +304,17 @@ article img {
     color: white;
     border: 2px solid white;
 }
+
+
+.flex-container {
+    display: flex;
+    border: 2px solid white;
+    background-color: blue;
+    flex-wrap: wrap;
+}
+
+.flex-container > div {
+    background-color: grey;
+    padding: 60px;
+    margin: 20px;
+}
