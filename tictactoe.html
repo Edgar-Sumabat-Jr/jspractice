@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tictactoe.css">
+    <title>Tic-Tac-Toe</title>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+
+    <div class="status">
+        <p id="status-message">Player X's turn</p>
+    </div>
+
+    <script>
+        let player1 = true; // Player X starts
+        let player2 = false; // Player O
+        const values = document.querySelectorAll('.box'); // Select all boxes
+        const statusMessage = document.getElementById('status-message'); // Status message
+
+        // Function to change text content (mark the box)
+        function changeText(element) {
+            if (player1) {
+                element.textContent = "X";
+                player1 = false;
+                player2 = true;
+            } else if (player2) {
+                element.textContent = "O";
+                player1 = true;
+                player2 = false;
+            }
+
+            // After every move, check if there's a winner
+            const winner = checkWinner();
+            if (winner) {
+                statusMessage.textContent = `${winner} wins!`;
+                // Disable all boxes after the game ends
+                disableBoard();
+            } else if (Array.from(values).every(box => box.textContent !== '')) {
+                statusMessage.textContent = "It's a draw!";
+                disableBoard();
+            } else {
+                statusMessage.textContent = `Player ${player1 ? 'X' : 'O'}'s turn`;
+            }
+        }
+
+        // Function to check for a winner
+        function checkWinner() {
+            const winPatterns = [
+                // Rows
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                // Columns
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                // Diagonals
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
+
+            // Iterate over each winning pattern (rows, columns, diagonals)
+            for (let pattern of winPatterns) {
+                const [a, b, c] = pattern;
+                const cellA = values[a].textContent;
+                const cellB = values[b].textContent;
+                const cellC = values[c].textContent;
+
+                if (cellA && cellA === cellB && cellB === cellC) {
+                    return cellA; // Return the winner ('X' or 'O')
+                }
+            }
+
+            return null; // No winner yet
+        }
+
+        // Function to disable the board after the game ends
+        function disableBoard() {
+            values.forEach(value => {
+                value.removeEventListener('click', handleClick); // Remove click event
+            });
+        }
+
+        // Store the handleClick function reference
+        function handleClick(event) {
+            const value = event.target;
+            if (value.textContent === '') { // Only allow click if the box is empty
+                changeText(value);
+            }
+        }
+
+        // Attach the event listener to each box
+        values.forEach(value => {
+            value.addEventListener('click', handleClick); // Attach the click event handler
+        });
+    </script>
+</body>
+</html>
